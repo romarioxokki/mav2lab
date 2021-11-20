@@ -1,3 +1,7 @@
+package baseClasses;
+
+import baseClasses.Person;
+
 public class Teacher extends Person {
     private String lesson;
     private String workingHours;

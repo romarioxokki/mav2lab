@@ -1,3 +1,7 @@
+package baseClasses;
+
+import baseClasses.Person;
+
 import java.util.Map;
 
 public class Student extends Person {

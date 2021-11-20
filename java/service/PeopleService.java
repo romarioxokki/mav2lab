@@ -1,9 +1,16 @@
+package service;
+
+import baseClasses.Person;
+import baseClasses.Student;
+import baseClasses.StudySubject;
+import baseClasses.Teacher;
+import dao.PeopleDAO;
+
 import java.io.IOException;
 import java.util.Map;
-import java.util.Optional;
 
 public class PeopleService {
-    private final static PeopleDAO serviceDao = new PeopleDAO("src/main/resources/");
+    private final static PeopleDAO serviceDao = new PeopleDAO("src/main/resources/personNumber-");
 
     public static void createTeacher(String name, String birthdate, String phone, String lesson, String workingHours) throws IOException {
         Teacher teacher = new Teacher(name,birthdate,phone,lesson,workingHours);
@@ -22,9 +29,12 @@ public class PeopleService {
         return person;
     }
     public static void updatePerson(int id, Map params,String perk) throws IOException {
-        Person person = new Person((String) params.get("name"),(String)params.get("birthdate"),(String)params.get("phone"));
-        serviceDao.delete(id);
+        Person person = serviceDao.findById(id,perk);
+        person.setName((String)params.get("name"));
+        person.setPhone((String)params.get("phone"));
+        person.setBirthdate((String)params.get("birthdate") );
         person.setId(id);
+        serviceDao.delete(id);
         serviceDao.save(person);
     }
 

@@ -1,3 +1,7 @@
+package service;
+
+import baseClasses.StudySubject;
+import service.Controller;
 
 import java.io.IOException;
 import java.util.Map;
@@ -9,7 +13,6 @@ public class Dispatcher {
             while (true) {
                 while (!(Controller.queue.size() == 0)) {
                     Map<String, Object> params = Controller.queue.poll();
-                    System.out.println(Controller.queue.size());
                     String command = (String) params.get("command");
                     String type = (String) params.get("type");
                     if (command.equals("create")) {
@@ -19,7 +22,7 @@ public class Dispatcher {
                             } catch (IOException e) {e.printStackTrace();}
                         } else {
                             try {
-                                PeopleService.createStudent((String) params.get("name"),(String) params.get("birthdate"),(String) params.get("phone"),(StudySubject[]) params.get("StudySubject"),(Map) params.get("averageMarks"));
+                                PeopleService.createStudent((String) params.get("name"),(String) params.get("birthdate"),(String) params.get("phone"),(StudySubject[]) params.get("baseClasses.StudySubject"),(Map) params.get("averageMarks"));
                             } catch (IOException e) {e.printStackTrace();}
                         }
                     } else if (command.equals("update")) {
