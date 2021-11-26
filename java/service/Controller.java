@@ -1,6 +1,7 @@
 package service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import baseClasses.Person;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -78,7 +79,6 @@ public class Controller {
                 params.put("name", splitedLines[3]);
                 params.put("birthdate", splitedLines[4]);
                 params.put("phone", splitedLines[5]);
-                System.out.println("Yes");
 
             }
             if (Pattern.matches(PATTERN4, lines)) {
@@ -98,7 +98,6 @@ public class Controller {
                 }
                 error = null;
             }
-
 
 
 

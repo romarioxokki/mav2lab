@@ -54,15 +54,15 @@ public class PeopleDAO implements Dao<Person> {
     @Override
     public Person findById(int id, String perk) {
         File file = new File(fileName + id + ".json");
-        if (perk.equals("baseClasses.Person")) {
+        if (perk.equals("Person")) {
             Person person = reading(file, Person.class);
             return person;
         }
-        if (perk.equals("baseClasses.Student")) {
+        if (perk.equals("Student")) {
             Student student = reading(file, Student.class);
             return student;
         }
-        if (perk.equals("baseClasses.Teacher")) {
+        if (perk.equals("Teacher")) {
             Teacher teacher = reading(file, Teacher.class);
             return teacher;
         }

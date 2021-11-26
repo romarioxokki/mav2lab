@@ -4,13 +4,14 @@ import baseClasses.Person;
 import baseClasses.Student;
 import baseClasses.StudySubject;
 import baseClasses.Teacher;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import dao.PeopleDAO;
 
 import java.io.IOException;
 import java.util.Map;
 
 public class PeopleService {
-    private final static PeopleDAO serviceDao = new PeopleDAO("src/main/resources/personNumber-");
+    private final static PeopleDAO serviceDao = new PeopleDAO("src/main/resources/frame/personNumber-");
 
     public static void createTeacher(String name, String birthdate, String phone, String lesson, String workingHours) throws IOException {
         Teacher teacher = new Teacher(name,birthdate,phone,lesson,workingHours);
@@ -29,7 +30,7 @@ public class PeopleService {
         return person;
     }
     public static void updatePerson(int id, Map params,String perk) throws IOException {
-        Person person = serviceDao.findById(id,perk);
+        Person person = new Person((String)params.get("name"),(String)params.get("birthdate"),(String)params.get("phone"));
         person.setName((String)params.get("name"));
         person.setPhone((String)params.get("phone"));
         person.setBirthdate((String)params.get("birthdate") );

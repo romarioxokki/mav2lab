@@ -1,11 +1,27 @@
 package baseClasses;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.File;
+import java.io.IOException;
+
 public class Person {
     private String name;
     private String birthdate;
     private String phone;
-    private static int count = 0;
-    public int id = 0;
+    ObjectMapper objectMapper = new ObjectMapper();
+    private  int count;
+
+    {
+        try {
+            count = objectMapper.readValue(new File("src/main/resources/crashReport/report.json"),Integer.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int id;
 
     public Person(String name, String birthdate, String phone) {
         this.name = name;
